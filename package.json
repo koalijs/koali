@@ -4,6 +4,7 @@
   "description": "An koa-based Node.js web application",
   "main": "index.js",
   "license": "MIT",
+  "repository": "koalijs/koali",
   "jest": {
     "testEnvironment": "node"
   },
@@ -28,5 +29,17 @@
     "prettier": "^1.19.0",
     "supertest": "^4.0.2"
   },
-  "dependencies": {}
+  "dependencies": {
+    "@koa/multer": "^2.0.0",
+    "@koa/router": "^8.0.2",
+    "ajv": "^6.10.2",
+    "debug": "^4.1.1",
+    "i18n-2": "^0.7.3",
+    "koa": "^2.11.0",
+    "koa-bodyparser": "^4.2.1",
+    "koa-session": "^5.12.3",
+    "objection": "^1.6.11",
+    "objection-db-errors": "^1.1.1",
+    "pluralize": "^8.0.0"
+  }
 }
