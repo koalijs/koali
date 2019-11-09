@@ -1,0 +1,32 @@
+{
+  "name": "koala",
+  "version": "0.1.0",
+  "description": "An koa-based Node.js web application",
+  "main": "index.js",
+  "license": "MIT",
+  "jest": {
+    "testEnvironment": "node"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run test"
+    }
+  },
+  "scripts": {
+    "eslint": "eslint --format codeframe *.js \"{lib,test}/**/*.{js,ts}\"",
+    "prettier": "prettier --write *.js \"{lib,test}/**/*.{js,ts}\"",
+    "coveralls": "cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js",
+    "test-travis": "npm run eslint && jest --coverage --collectCoverageFrom=lib/**/*.js",
+    "test": "npm run eslint && jest --passWithNoTests"
+  },
+  "devDependencies": {
+    "coveralls": "^3.0.7",
+    "eslint": "^6.6.0",
+    "eslint-plugin-prettier": "^3.1.1",
+    "husky": "^3.0.9",
+    "jest": "^24.9.0",
+    "prettier": "^1.19.0",
+    "supertest": "^4.0.2"
+  },
+  "dependencies": {}
+}
