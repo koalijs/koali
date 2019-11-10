@@ -16,9 +16,11 @@ test('load config', () => {
   expect(app.config).toHaveProperty('session.key', 'sss')
   expect(app.config).toHaveProperty('custom.dir', __dirname + '/custom')
   expect(app.config).toHaveProperty('i18n.extension', '.json')
+  expect(app.config.logger).toBeInstanceOf(Object)
   app = new App({
     env: 'other',
     baseDir: __dirname
   })
   expect(app.config).toHaveProperty('session.key', 's')
+  expect(app.config.logger).toBe(false)
 })
