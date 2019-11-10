@@ -1,4 +1,4 @@
-const I18n = require('../lib/i18n.js')
+const I18n = require('i18n-2')
 const JSONSchema = require('../lib/json-schema.js')
 const Model = require('../lib/model')
 
@@ -54,6 +54,8 @@ class Device extends Model {
 const i18n = new I18n({
   locales: ['zh', 'en'],
   defaultLocale: 'zh',
+  extension: '.json',
+  indent: 2,
   directory: require('path').join(__dirname, 'locales/')
 })
 const jv = new JSONSchema()
