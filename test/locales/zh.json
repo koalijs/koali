@@ -1,21 +1,15 @@
 {
-  "device app": "设备APP",
   "required": "必填",
-  ": ": ": ",
-  "device email": "设备邮箱",
-  "device num": "device num",
-  "device sub pro": "device sub pro",
-  "device sub req": "device sub req",
-  "device sub str": "device sub str",
-  "app": "app",
   "email": "邮箱",
-  "num": "num",
-  "sub pro": "sub pro",
-  "sub req": "sub req",
-  "sub str": "sub str",
   "should match format \"%s\"": "格式必须是%s",
   "should not be longer than %s character": {
     "one": "should not be longer than %s character",
     "other": "should not be longer than %s characters"
-  }
+  },
+  "Device app": "设备APP",
+  "Device email": "设备邮箱",
+  "Device num": "Device num",
+  "Device sub max age": "Device sub max age",
+  "Device sub req": "Device sub req",
+  "Device sub str": "Device sub str"
 }
