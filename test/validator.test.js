@@ -1,6 +1,6 @@
-const I18n = require('i18n-2')
 const Validator = require('../lib/validator')
 const Model = require('../lib/model')
+const i18n = require('./config/i18n')
 
 const schema = {
   type: 'object',
@@ -51,18 +51,15 @@ class Device extends Model {
   }
 }
 
-const i18n = new I18n({
-  locales: ['zh', 'en'],
-  defaultLocale: 'zh',
-  extension: '.json',
-  indent: 2,
-  directory: require('path').join(__dirname, 'locales/')
-})
 const jv = new Validator()
 
 jv.addSchema(schema, 'device')
 
-test('json schema i18n error message', () => {
+test('template', () => {
+  expect(Validator.i18nTemplate.required).toEqual('required')
+})
+
+test('parse error', () => {
   let validate = jv.getSchema('device')
   let valid = validate(correctData)
   expect(valid).toBeTruthy()
@@ -77,6 +74,7 @@ test('json schema i18n error message', () => {
   expect(err.message).toMatch(/^App\sis/)
   err = Validator.parseError(new Validator.ValidationError(validate.errors), { dataPath: 'device' })
   expect(err.message).toMatch(/^Device\sapp\sis/)
+  err = Validator.parseError(new Error('abc'))
   err = null
   try {
     Device.fromJson(data)
@@ -91,23 +89,3 @@ function expectMessage(msg) {
   expect(msg).toMatch('设备APP 必填')
   expect(msg).toMatch('格式必须是邮箱')
 }
-
-//test('json schema koa middleware', async () => {
-//  await expect(
-//    jv.koa('dd')({ method: 'get', request: { query: data } }, function() {})
-//  ).rejects.toThrow('no schema')
-//  await expect(
-//    jv.koa('device')({ method: 'get', request: { query: data } }, function() {})
-//  ).rejects.toThrow('device app is a required property')
-//  await expect(
-//    jv.koa('device')({ method: 'get', i18n, request: { query: data } }, function() {})
-//  ).rejects.toThrow('设备APP: 必填')
-//  await expect(
-//    jv.koa('device')({ method: 'get', i18n, request: { query: correctData } }, function() {})
-//  ).resolves.toBeUndefined()
-//  await expect(
-//    Validator.koaI18nModelValidationError()({ i18n }, function() {
-//      Device.fromJson(data)
-//    })
-//  ).rejects.toThrow('设备APP: 必填')
-//})
