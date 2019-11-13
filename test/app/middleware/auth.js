@@ -1,5 +1,5 @@
 module.exports = () => {
-  return function model(ctx, next) {
+  return function(ctx, next) {
     return next()
   }
 }
