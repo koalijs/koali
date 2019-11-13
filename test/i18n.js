@@ -5,5 +5,5 @@ module.exports = new I18n({
   defaultLocale: 'zh',
   extension: '.json',
   indent: 2,
-  directory: require('path').join(__dirname, 'locales/')
+  directory: require('path').join(__dirname, 'app/config/locales/')
 })

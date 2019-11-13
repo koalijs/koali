@@ -1,4 +1,4 @@
-const i18n = require('../config/i18n')
+const i18n = require('../i18n')
 const validator = require('../../lib/middleware/validator')
 
 const schema = {

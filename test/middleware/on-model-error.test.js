@@ -1,4 +1,4 @@
-const i18n = require('../config/i18n')
+const i18n = require('../i18n')
 const onModelError = require('../../lib/middleware/on-model-error')()
 const Model = require('../../lib/model')
 

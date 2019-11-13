@@ -1,6 +1,6 @@
 const Validator = require('../lib/validator')
 const Model = require('../lib/model')
-const i18n = require('./config/i18n')
+const i18n = require('./i18n')
 
 const schema = {
   type: 'object',
