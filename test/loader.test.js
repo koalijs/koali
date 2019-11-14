@@ -1,7 +1,7 @@
 const loader = require('../lib/loader')
 const path = require('path')
 const baseDir = path.join(__dirname, 'app')
-const Koali = require('../index')
+const App = require('../index')
 const Router = require('@koa/router')
 
 test('load config file', () => {
@@ -33,16 +33,16 @@ test('load model', () => {
 })
 
 test('load middleware', () => {
-  let app = new Koali()
+  let app = new App()
   let conf = loader.loadMiddleware(path.join(baseDir, 'middleware'), app)
   expect(conf.length).toBeGreaterThan(1)
 
-  app = new Koali()
+  app = new App()
   conf = loader.loadMiddleware(path.join(baseDir, 'middleware'), app, ['auth'])
   expect(conf.length).toBe(1)
   expect(conf[0].name).toBe('auth')
 
-  app = new Koali({ config: { auth: false } })
+  app = new App({ config: { auth: false } })
   conf = loader.loadMiddleware(path.join(baseDir, 'middleware'), app, ['setCurrentUser', 'auth'])
   expect(conf.length).toBe(1)
   expect(conf[0].name).toBe('setCurrentUser')
