@@ -6,8 +6,11 @@ const schema = {
   type: 'object',
   required: ['app'],
   properties: {
-    email: { type: 'string', minLength: 1, maxLength: 7, format: 'email' },
+    email: { type: 'string', maxLength: 7, format: 'email' },
     num: { type: 'integer', minimum: 5 },
+    str: { type: 'string', minLength: 5 },
+    number: { type: 'integer', minimum: 5 },
+    ar: { type: 'array', uniqueItems: true },
     sub: {
       type: 'object',
       required: ['maxAge', 'req'],
@@ -21,6 +24,9 @@ const schema = {
 const data = {
   email: 'test.gmail.com',
   num: 2,
+  str: 'xxx',
+  number: 'xxxx',
+  ar: [1, 1, 1],
   sub: {
     str: 'abcedff'
   }
@@ -30,6 +36,9 @@ const correctData = {
   email: 'a@b.co',
   num: 7,
   app: 'app',
+  str: 'xxxxxxxx',
+  number: 5,
+  ar: [1, 2, 3],
   sub: {
     maxAge: 'ok',
     req: 'ok',
