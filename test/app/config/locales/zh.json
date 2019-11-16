@@ -18,5 +18,14 @@
   "should in [%(min)s, $(max)s]": "should in [%(min)s, $(max)s]",
   "Num1": "Num1",
   "should in [%(min)s, %(max)s]": "should in [%(min)s, %(max)s]",
-  "should be %(comparison)s %(limit)s": "should be %(comparison)s %(limit)s"
+  "should be %(comparison)s %(limit)s": "should be %(comparison)s %(limit)s",
+  "Device str": "Device str",
+  "should not be shorter than %s character": {
+    "one": "should not be shorter than %s character",
+    "other": "should not be shorter than %s characters"
+  },
+  "Device number": "Device number",
+  "integer": "integer",
+  "should be \"%s\"": "should be \"%s\"",
+  "Device ar": "Device ar"
 }

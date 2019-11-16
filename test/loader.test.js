@@ -13,6 +13,7 @@ test('load config file', () => {
   expect(function() {
     loader.loadConfigFile(path.join(baseDir, 'config/development'))
   }).toThrow()
+  expect(loader.loadConfigFile(path.join(baseDir, 'config/empty'))).toEqual({})
 })
 
 test('load config', () => {
