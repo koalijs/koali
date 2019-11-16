@@ -96,3 +96,25 @@ test('data path', async () => {
     validator({ schemas: [schemaWithId], schema: 'device', dataPath: 'user' })(ctx, next)
   ).rejects.toThrow('User app is a required property')
 })
+
+test('uncaught error', async () => {
+  await expect(
+    validator({
+      keywords: {
+        range: {
+          type: 'number',
+          validate: function vvv() {
+            throw new Error('uncaught')
+          },
+          errors: true
+        }
+      },
+      schema: {
+        type: 'object',
+        properties: {
+          num: { range: [1, 10] }
+        }
+      }
+    })({ request: { body: { num: 5 } } }, next)
+  ).rejects.toThrow('uncaught')
+})

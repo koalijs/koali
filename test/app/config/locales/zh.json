@@ -11,5 +11,11 @@
   "Device num": "Device num",
   "Device sub max age": "Device sub max age",
   "Device sub req": "Device sub req",
-  "Device sub str": "Device sub str"
+  "Device sub str": "Device sub str",
+  "The page %s was not found on this server.": "页面 %s 不存在",
+  "Internal Server Error": "系统错误",
+  "Num": "Num",
+  "should in [%(min)s, $(max)s]": "should in [%(min)s, $(max)s]",
+  "Num1": "Num1",
+  "should in [%(min)s, %(max)s]": "should in [%(min)s, %(max)s]"
 }

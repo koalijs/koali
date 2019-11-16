@@ -89,3 +89,39 @@ function expectMessage(msg) {
   expect(msg).toMatch('设备APP 必填')
   expect(msg).toMatch('格式必须是邮箱')
 }
+
+test('keyword', () => {
+  Validator.i18nTemplate.range = 'should in [%(min)s, %(max)s]'
+
+  const jv = new Validator({
+    keywords: {
+      range: {
+        type: 'number',
+        validate: function vvv(schema, data) {
+          vvv.errors = [
+            {
+              keyword: 'range',
+              message: `should between ${schema[0]} to ${schema[1]}`,
+              params: {
+                min: schema[0],
+                max: schema[1]
+              }
+            }
+          ]
+          return data > schema[0] && data < schema[1]
+        },
+        errors: true
+      }
+    }
+  })
+  let validate = jv.compile({
+    type: 'object',
+    properties: {
+      num: { range: [1, 10] },
+      num1: { range: [1, 10] }
+    }
+  })
+  validate({ num: 11, num1: 12 })
+  let err = Validator.parseError(new Validator.ValidationError(validate.errors), { i18n })
+  expect(err.message).toMatch('should in [1, 10]')
+})
