@@ -26,6 +26,7 @@
     "eslint-plugin-prettier": "^3.1.1",
     "husky": "^3.0.9",
     "jest": "^24.9.0",
+    "knex": "^0.20.1",
     "prettier": "^1.19.0",
     "supertest": "^4.0.2"
   },
@@ -38,7 +39,6 @@
     "extend2": "^1.0.0",
     "i18n-2": "^0.7.3",
     "is-plain-object": "^3.0.0",
-    "knex": "^0.20.1",
     "koa": "^2.11.0",
     "koa-bodyparser": "^4.2.1",
     "koa-logger": "^3.2.1",
@@ -51,5 +51,31 @@
     "pluralize": "^8.0.0",
     "require-all": "^3.0.0",
     "statuses": "^1.5.0"
+  },
+  "prettier": {
+    "printWidth": 100,
+    "singleQuote": true,
+    "bracketSpacing": true,
+    "semi": false
+  },
+  "eslintConfig": {
+    "extends": [
+      "eslint:recommended"
+    ],
+    "parserOptions": {
+      "ecmaVersion": 8
+    },
+    "plugins": [
+      "prettier"
+    ],
+    "rules": {
+      "prettier/prettier": "error",
+      "no-undef": "error"
+    },
+    "env": {
+      "es6": true,
+      "jest": true,
+      "node": true
+    }
   }
 }
