@@ -14,8 +14,8 @@
     }
   },
   "scripts": {
-    "eslint": "eslint --format codeframe *.js \"{lib,test}/**/*.{js,ts}\"",
-    "prettier": "prettier --write *.js \"{lib,test}/**/*.{js,ts}\"",
+    "eslint": "eslint --format codeframe *.js \"{lib,test}/**/*.js\"",
+    "prettier": "prettier --write *.js \"{lib,test}/**/*.js\"",
     "coveralls": "cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js",
     "test-travis": "npm run eslint && jest --coverage --collectCoverageFrom=lib/**/*.js",
     "test": "npm run eslint && jest --passWithNoTests"
