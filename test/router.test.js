@@ -7,7 +7,7 @@ const baseDir = path.join(__dirname, 'app')
 function createApp() {
   return new App({
     env: 'test',
-    baseDir: baseDir
+    baseDir
   })
 }
 

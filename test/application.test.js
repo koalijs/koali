@@ -8,6 +8,10 @@ test('constructor', () => {
     baseDir: baseDir
   })
   expect(app.proxy).toBeTruthy()
+
+  app = new App(baseDir)
+  expect(app.proxy).toBeTruthy()
+  expect(app.options.baseDir).toBe(baseDir)
 })
 
 test('unconfigured app', () => {
@@ -79,6 +83,9 @@ test('load core middleware', () => {
     }
   })
   expect(app.context.model).toBeUndefined()
+  let model = {}
+  app.context.model = model
   app.loadCoreMiddleware(['loadModel'])
   expect(app.context.model).toHaveProperty('Device')
+  expect(app.context.model).toBe(model)
 })
