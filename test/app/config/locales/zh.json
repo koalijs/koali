@@ -17,5 +17,6 @@
   "Num": "Num",
   "should in [%(min)s, $(max)s]": "should in [%(min)s, $(max)s]",
   "Num1": "Num1",
-  "should in [%(min)s, %(max)s]": "should in [%(min)s, %(max)s]"
+  "should in [%(min)s, %(max)s]": "should in [%(min)s, %(max)s]",
+  "should be %(comparison)s %(limit)s": "should be %(comparison)s %(limit)s"
 }
