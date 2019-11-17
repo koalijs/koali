@@ -28,6 +28,7 @@
     "jest": "^24.9.0",
     "knex": "^0.20.1",
     "prettier": "^1.19.0",
+    "sqlite3": "^4.1.0",
     "supertest": "^4.0.2"
   },
   "dependencies": {
