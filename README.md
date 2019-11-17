@@ -1,4 +1,6 @@
 [![Build Status](https://travis-ci.org/koalijs/koali.svg?branch=master)](https://travis-ci.org/koalijs/koali)
+[![Coverage Status](https://coveralls.io/repos/github/koalijs/koali/badge.svg?branch=master&service=github)](https://coveralls.io/github/koalijs/koali.js?branch=master) 
+
 
 Koali
 =======================
