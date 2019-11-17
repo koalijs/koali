@@ -68,6 +68,10 @@ class UserMessage extends Model {
   static get timestamps() {
     return { create: false, update: 'updated_at' }
   }
+
+  static tableMetadata() {
+    return null
+  }
 }
 
 test('table name', () => {
@@ -161,4 +165,26 @@ test('timestamps', async () => {
   let msg = await UserMessage.query().insert({ msg: 'tt', user_id: user.id })
   expect(msg.created_at).toBeUndefined()
   expect(msg.updated_at).toBeTruthy()
+})
+
+test('table metadata', async () => {
+  expect(User.tableMetadata()).toBeNull()
+  let data = await User.fetchTableMetadata()
+  expect(data.columns).toContain('id')
+  expect(data.columnInfo).toHaveProperty('id')
+  data = await User.tableMetadata()
+  expect(data.columnInfo).toHaveProperty('name')
+
+  data = await User.fetchTableMetadata()
+  expect(data.columnInfo).toHaveProperty('name')
+
+  data = await User.fetchTableMetadata({ force: true, knex: knex, table: 'users' })
+  expect(data.columnInfo).toHaveProperty('name')
+  data = await User.fetchTableMetadata({ force: true, parentBuilder: User.query() })
+  expect(data.columnInfo).toHaveProperty('name')
+
+  data = await UserMessage.fetchTableMetadata()
+  expect(data.columnInfo).toHaveProperty('msg')
+  data = await UserMessage.fetchTableMetadata()
+  expect(data.columnInfo).toHaveProperty('msg')
 })
