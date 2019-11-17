@@ -23,7 +23,7 @@ const asyncSchema = {
 
 const ctx = { request: { body: { email: 'xxxxxxxxxxxxxx' } } }
 const validCtx = { request: { body: { app: 'ok', email: 'a@b.co' } } }
-const next = function() {}
+const next = async function() {}
 
 test('invalid options', async () => {
   await expect(() => {
