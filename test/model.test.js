@@ -82,7 +82,6 @@ test('table name', () => {
 test('upsert', async () => {
   //clean
   let name = 'upsert'
-  //console.log( await UserOrder.query(knex).columnInfo() )
   let user = await User.query().findOne({ name })
   expect(user).toBeFalsy()
 
@@ -113,7 +112,6 @@ test('upsert', async () => {
 test('upsert and fetch', async () => {
   //clean
   let name = 'upsert-and-fetch'
-  //console.log( await UserOrder.query(knex).columnInfo() )
   let user = await User.query().findOne({ name })
   expect(user).toBeFalsy()
 
@@ -187,4 +185,40 @@ test('table metadata', async () => {
   expect(data.columnInfo).toHaveProperty('msg')
   data = await UserMessage.fetchTableMetadata()
   expect(data.columnInfo).toHaveProperty('msg')
+})
+
+test('json schema', async () => {
+  const { jsonSchemaFromMetadata } = require('../lib/model-json-schema')
+  let data = await User.fetchTableMetadata()
+  let schema = jsonSchemaFromMetadata(User, data)
+  expect(schema.type).toEqual('object')
+  expect(schema.properties).toHaveProperty('name')
+  expect(schema.properties).toHaveProperty('created_at')
+  expect(schema.properties.name).toHaveProperty('type', 'string')
+
+  schema = jsonSchemaFromMetadata(User, data, null, { ignore: ['created_at'] })
+  expect(schema.properties).not.toHaveProperty('created_at')
+
+  schema = jsonSchemaFromMetadata(
+    User,
+    data,
+    { properties: { birthday: {} } },
+    { ignore: ['created_at'] }
+  )
+  expect(schema.properties).toHaveProperty('birthday')
+
+  /* eslint require-atomic-updates: off */
+  User.idColumn = ['id', 'name']
+  schema = jsonSchemaFromMetadata(User, data)
+  expect(schema.properties).not.toHaveProperty('name')
+  User.idColumn = 'id'
+
+  schema = jsonSchemaFromMetadata(User, null, null)
+  expect(schema).toBeNull()
+
+  schema = jsonSchemaFromMetadata(User, {}, null)
+  expect(schema).toBeNull()
+
+  schema = User.jsonSchemaFromMetadata()
+  expect(schema.properties).toHaveProperty('name')
 })
