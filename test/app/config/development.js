@@ -1,7 +1,7 @@
-module.exports = options => {
-  return {
+module.exports = {
+  koali: {
     custom: {
-      dir: options.baseDir + '/custom'
+      dir: '/custom'
     },
     session: {
       key: 'sss'
