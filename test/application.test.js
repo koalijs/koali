@@ -1,6 +1,7 @@
 const App = require('../lib/application')
 const path = require('path')
 const baseDir = path.join(__dirname, 'app')
+process.env.NODE_CONFIG_DIR = path.join(__dirname, 'app/config')
 
 test('constructor', () => {
   let app = new App({
@@ -27,15 +28,12 @@ test('config and model dir are not directory', () => {
     env: 'development',
     baseDir: baseDir,
     config: {
-      loadConfig: {
-        dir: path.join(baseDir, 'config/default.js')
-      },
       loadModel: {
         dir: path.join(baseDir, 'config/default.js')
       }
     }
   })
-  expect(app.config).toHaveProperty('session.key', 'session')
+  expect(app.context.model).toBeUndefined()
 })
 
 test('load config', () => {
@@ -57,12 +55,6 @@ test('load config', () => {
   expect(app.config).toHaveProperty('custom.dir', '/custom')
   expect(app.config).toHaveProperty('i18n.extension', '.json')
   expect(app.config.logger).toBeInstanceOf(Object)
-  app = new App({
-    env: 'other',
-    baseDir: baseDir
-  })
-  expect(app.config).toHaveProperty('session.key', 's')
-  expect(app.config.logger).toBe(false)
 })
 
 test('load core middleware', () => {

@@ -2,6 +2,7 @@ const App = require('../')
 const request = require('supertest')
 const path = require('path')
 
+process.env.NODE_CONFIG_DIR = path.join(__dirname, 'app/config2')
 const baseDir = path.join(__dirname, 'app')
 
 function createApp() {

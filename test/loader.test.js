@@ -4,6 +4,8 @@ const baseDir = path.join(__dirname, 'app')
 const App = require('../index')
 const Router = require('@koa/router')
 
+process.env.NODE_CONFIG_DIR = path.join(__dirname, 'app/config')
+
 test('load config file', () => {
   expect(loader.loadConfigFile(path.join(baseDir, 'config/default')).koali).toHaveProperty(
     'session.key',

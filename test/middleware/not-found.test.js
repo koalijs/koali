@@ -1,7 +1,7 @@
 const App = require('../../index')
 const request = require('supertest')
 const path = require('path')
-
+process.env.NODE_CONFIG_DIR = path.join(__dirname, '../app/config')
 const baseDir = path.join(__dirname, '../app')
 
 let app
