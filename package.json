@@ -1,6 +1,6 @@
 {
   "name": "koali",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "An koa-based Node.js web application",
   "main": "index.js",
   "license": "MIT",
