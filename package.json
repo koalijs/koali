@@ -1,22 +1,10 @@
 {
   "name": "koali",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "An koa-based Node.js web application",
   "main": "index.js",
   "license": "MIT",
   "repository": "koalijs/koali",
-  "jest": {
-    "testEnvironment": "node",
-    "testPathIgnorePatterns": [
-       "/node_modules/",
-       "/test.js"
-    ]
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "npm run test"
-    }
-  },
   "scripts": {
     "eslint": "eslint --format codeframe *.js \"{lib,test}/**/*.js\"",
     "prettier": "prettier --write *.js \"{lib,test}/**/*.js\"",
@@ -58,6 +46,18 @@
     "pluralize": "^8.0.0",
     "require-all": "^3.0.0",
     "statuses": "^1.5.0"
+  },
+  "jest": {
+    "testEnvironment": "node",
+    "testPathIgnorePatterns": [
+       "/node_modules/",
+       "/test.js"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run test"
+    }
   },
   "prettier": {
     "printWidth": 100,
