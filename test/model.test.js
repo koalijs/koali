@@ -21,6 +21,8 @@ beforeAll(async () => {
         .primary()
       table.string('name').notNullable()
       table.string('password')
+      table.bool('tall')
+      table.bool('male')
       table.integer('age').defaultTo(1)
       table.timestamps(true, true)
     })
@@ -195,6 +197,9 @@ test('json schema', async () => {
   expect(schema.properties).toHaveProperty('name')
   expect(schema.properties).toHaveProperty('created_at')
   expect(schema.properties.name).toHaveProperty('type', 'string')
+  expect(schema.properties.password.type).toEqual(['string', 'null'])
+  expect(schema.properties.tall.type).toEqual(['integer', 'boolean', 'null'])
+  expect(schema.properties.male.type).toEqual(['integer', 'boolean', 'null'])
 
   schema = jsonSchemaFromMetadata(User, data, null, { ignore: ['created_at'] })
   expect(schema.properties).not.toHaveProperty('created_at')
