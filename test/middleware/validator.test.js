@@ -6,8 +6,8 @@ const schema = {
   required: ['app'],
   properties: {
     email: { type: 'string', minLength: 1, maxLength: 7, format: 'email' },
-    num: { type: 'integer' }
-  }
+    num: { type: 'integer' },
+  },
 }
 const schemaWithId = Object.assign({ $id: 'device' }, schema)
 
@@ -17,13 +17,13 @@ const asyncSchema = {
   required: ['app'],
   properties: {
     email: { type: 'string', minLength: 1, maxLength: 8, format: 'email' },
-    num: { type: 'integer' }
-  }
+    num: { type: 'integer' },
+  },
 }
 
 const ctx = { request: { body: { email: 'xxxxxxxxxxxxxx' } } }
 const validCtx = { request: { body: { app: 'ok', email: 'a@b.co' } } }
-const next = async function() {}
+const next = async function () {}
 
 test('invalid options', async () => {
   await expect(() => {
@@ -55,7 +55,7 @@ test('schema', async () => {
   )
 
   await expect(
-    validator({ schema: schemaWithId })(validCtx, function() {
+    validator({ schema: schemaWithId })(validCtx, function () {
       throw new Error('other error')
     })
   ).rejects.toThrow('other error')
@@ -106,15 +106,15 @@ test('uncaught error', async () => {
           validate: function vvv() {
             throw new Error('uncaught')
           },
-          errors: true
-        }
+          errors: true,
+        },
       },
       schema: {
         type: 'object',
         properties: {
-          num: { range: [1, 10] }
-        }
-      }
+          num: { range: [1, 10] },
+        },
+      },
     })({ request: { body: { num: 5 } } }, next)
   ).rejects.toThrow('uncaught')
 })

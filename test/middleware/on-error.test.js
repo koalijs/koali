@@ -20,7 +20,7 @@ function createApp(opts) {
     Object.assign(
       {
         env: 'test',
-        baseDir
+        baseDir,
       },
       opts
     )
@@ -32,18 +32,15 @@ function createApp(opts) {
 
 test('no error', async () => {
   createApp()
-  app.use(async ctx => {
+  app.use(async (ctx) => {
     ctx.body = 'ok'
   })
-  await request(server)
-    .get('/')
-    .expect(200)
-    .expect('ok')
+  await request(server).get('/').expect(200).expect('ok')
 })
 
 test('throw http error', async () => {
   createApp()
-  app.use(async ctx => {
+  app.use(async (ctx) => {
     ctx.throw(400, { data: { test: true } })
   })
   await request(server)
@@ -55,7 +52,7 @@ test('throw http error', async () => {
 
 test('accepts', async () => {
   createApp()
-  app.use(async ctx => {
+  app.use(async (ctx) => {
     ctx.throw(400, { data: { test: true } })
   })
 
@@ -75,16 +72,12 @@ test('accepts', async () => {
     .expect(/html/)
     .expect(/Bad\sRequest/)
 
-  await request(server)
-    .get('/')
-    .set('Accept', 'text/plain')
-    .expect(400)
-    .expect('Bad Request')
+  await request(server).get('/').set('Accept', 'text/plain').expect(400).expect('Bad Request')
 })
 
 test('not expose', async () => {
   createApp()
-  app.use(async ctx => {
+  app.use(async (ctx) => {
     ctx.throw(500, 'msg')
   })
   await request(server)
@@ -156,11 +149,11 @@ test('i18n', async () => {
   createApp({
     config: {
       i18n: {
-        locales: ['zh']
-      }
-    }
+        locales: ['zh'],
+      },
+    },
   })
-  app.use(async ctx => {
+  app.use(async (ctx) => {
     ctx.throw(500)
   })
   await request(server)

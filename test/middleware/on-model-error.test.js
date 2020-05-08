@@ -12,8 +12,8 @@ const schema = {
   required: ['app'],
   properties: {
     email: { type: 'string', minLength: 1, maxLength: 7, format: 'email' },
-    num: { type: 'integer' }
-  }
+    num: { type: 'integer' },
+  },
 }
 
 const data = { email: 'xxxxxxxxxxxxxx' }

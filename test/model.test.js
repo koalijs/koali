@@ -7,18 +7,15 @@ beforeAll(async () => {
     client: 'sqlite3',
     useNullAsDefault: true,
     connection: {
-      filename: ':memory:' //"./mydb.sqlite"
-    }
+      filename: ':memory:', //"./mydb.sqlite"
+    },
   })
 
   Model.knex(knex)
 
   await knex.schema
-    .createTable('users', function(table) {
-      table
-        .increments('id')
-        .unsigned()
-        .primary()
+    .createTable('users', function (table) {
+      table.increments('id').unsigned().primary()
       table.string('name').notNullable()
       table.string('password')
       table.bool('tall')
@@ -26,31 +23,19 @@ beforeAll(async () => {
       table.integer('age').defaultTo(1)
       table.timestamps(true, true)
     })
-    .createTable('user_orders', function(table) {
-      table
-        .increments('id')
-        .unsigned()
-        .primary()
+    .createTable('user_orders', function (table) {
+      table.increments('id').unsigned().primary()
       table.integer('user_id').notNullable()
       table.string('title')
       table.timestamps(true, true)
-      table
-        .foreign('user_id', 'user')
-        .references('id')
-        .inTable('users')
+      table.foreign('user_id', 'user').references('id').inTable('users')
     })
-    .createTable('user_messages', function(table) {
-      table
-        .increments('id')
-        .unsigned()
-        .primary()
+    .createTable('user_messages', function (table) {
+      table.increments('id').unsigned().primary()
       table.integer('user_id').notNullable()
       table.string('msg')
       table.timestamps(true, true)
-      table
-        .foreign('user_id', 'user')
-        .references('id')
-        .inTable('users')
+      table.foreign('user_id', 'user').references('id').inTable('users')
     })
 })
 
@@ -88,9 +73,7 @@ test('upsert', async () => {
   expect(user).toBeFalsy()
 
   //insert
-  let res = await User.query()
-    .where({ name })
-    .upsert({ name, password: 'pass' })
+  let res = await User.query().where({ name }).upsert({ name, password: 'pass' })
   expect(res.password).toEqual('pass')
   expect(res.age).toBeUndefined()
 
@@ -100,9 +83,7 @@ test('upsert', async () => {
   expect(user.password).toEqual('pass')
 
   //update
-  res = await User.query()
-    .where({ name })
-    .upsert({ name, password: 'pass1' })
+  res = await User.query().where({ name }).upsert({ name, password: 'pass1' })
   expect(res).toEqual(1)
   user = await User.query().findOne({ name })
   expect(user.password).toEqual('pass1')
@@ -117,16 +98,12 @@ test('upsert and fetch', async () => {
   let user = await User.query().findOne({ name })
   expect(user).toBeFalsy()
 
-  user = await User.query()
-    .where({ name })
-    .upsertAndFetch({ name, password: 'pass' })
+  user = await User.query().where({ name }).upsertAndFetch({ name, password: 'pass' })
 
   expect(user).toBeTruthy()
   expect(user.password).toEqual('pass')
 
-  user = await User.query()
-    .where({ name })
-    .upsertAndFetch({ name, password: 'pass1' })
+  user = await User.query().where({ name }).upsertAndFetch({ name, password: 'pass1' })
   expect(user.password).toEqual('pass1')
   await user.$query().delete()
   user = await User.query().findOne({ name })
@@ -153,7 +130,7 @@ test('timestamps', async () => {
 
   order = await UserOrder.query().findById(order.id)
 
-  await new Promise(res => {
+  await new Promise((res) => {
     setTimeout(res, 100)
   })
 

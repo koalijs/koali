@@ -12,7 +12,7 @@ test('load config file', () => {
     's'
   )
   expect(loader.loadConfigFile(path.join(baseDir, 'config/notfound'))).toEqual({})
-  expect(function() {
+  expect(function () {
     loader.loadConfigFile(path.join(baseDir, 'config/error'))
   }).toThrow()
   expect(loader.loadConfigFile(path.join(baseDir, 'config/empty'))).toEqual({})
@@ -20,7 +20,7 @@ test('load config file', () => {
 
 test('load config', () => {
   let conf = loader.loadConfig(path.join(baseDir, 'config'), 'development', {
-    baseDir: baseDir
+    baseDir: baseDir,
   }).koali
   expect(conf).toHaveProperty('session.key', 'sss')
   expect(conf).toHaveProperty('custom.dir', '/custom')

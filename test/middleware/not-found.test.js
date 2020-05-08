@@ -20,7 +20,7 @@ function createApp(opts) {
     Object.assign(
       {
         env: 'test',
-        baseDir
+        baseDir,
       },
       opts
     )
@@ -31,20 +31,17 @@ function createApp(opts) {
 
 test('found', async () => {
   createApp()
-  app.use(async ctx => {
+  app.use(async (ctx) => {
     ctx.body = 'ok'
   })
-  await request(server)
-    .get('/')
-    .expect(200)
-    .expect('ok')
+  await request(server).get('/').expect(200).expect('ok')
 })
 
 test('not found', async () => {
   createApp({
     config: {
-      i18n: false
-    }
+      i18n: false,
+    },
   })
   await request(server)
     .get('/')
@@ -58,13 +55,9 @@ test('i18n', async () => {
   createApp({
     config: {
       i18n: {
-        locales: ['zh']
-      }
-    }
+        locales: ['zh'],
+      },
+    },
   })
-  await request(server)
-    .get('/')
-    .set('Accept', 'application/json')
-    .expect(404)
-    .expect(/不存在/)
+  await request(server).get('/').set('Accept', 'application/json').expect(404).expect(/不存在/)
 })

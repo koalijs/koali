@@ -15,10 +15,10 @@ const schema = {
       type: 'object',
       required: ['maxAge', 'req'],
       properties: {
-        str: { type: 'string', minLength: 1, maxLength: 5 }
-      }
-    }
-  }
+        str: { type: 'string', minLength: 1, maxLength: 5 },
+      },
+    },
+  },
 }
 
 const data = {
@@ -28,8 +28,8 @@ const data = {
   number: 'xxxx',
   ar: [1, 1, 1],
   sub: {
-    str: 'abcedff'
-  }
+    str: 'abcedff',
+  },
 }
 
 const correctData = {
@@ -42,8 +42,8 @@ const correctData = {
   sub: {
     maxAge: 'ok',
     req: 'ok',
-    str: 'abc'
-  }
+    str: 'abc',
+  },
 }
 
 class Device extends Model {
@@ -76,7 +76,7 @@ test('parse error', () => {
   expect(valid).toBeFalsy()
   let err = Validator.parseError(new Validator.ValidationError(validate.errors), {
     dataPath: 'device',
-    i18n
+    i18n,
   })
   expectMessage(err.message)
   err = Validator.parseError(new Validator.ValidationError(validate.errors))
@@ -113,22 +113,22 @@ test('keyword', () => {
               message: `should between ${schema[0]} to ${schema[1]}`,
               params: {
                 min: schema[0],
-                max: schema[1]
-              }
-            }
+                max: schema[1],
+              },
+            },
           ]
           return data > schema[0] && data < schema[1]
         },
-        errors: true
-      }
-    }
+        errors: true,
+      },
+    },
   })
   let validate = jv.compile({
     type: 'object',
     properties: {
       num: { range: [1, 10] },
-      num1: { range: [1, 10] }
-    }
+      num1: { range: [1, 10] },
+    },
   })
   validate({ num: 11, num1: 12 })
   let err = Validator.parseError(new Validator.ValidationError(validate.errors), { i18n })

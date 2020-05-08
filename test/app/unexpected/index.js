@@ -1,3 +1,3 @@
 module.exports = {
-  unexpected: 1
+  unexpected: 1,
 }

@@ -1,10 +1,10 @@
 module.exports = {
   koali: {
     custom: {
-      dir: '/custom'
+      dir: '/custom',
     },
     session: {
-      key: 'sss'
-    }
-  }
+      key: 'sss',
+    },
+  },
 }

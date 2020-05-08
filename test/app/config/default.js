@@ -1,7 +1,7 @@
 module.exports = {
   koali: {
     session: {
-      key: 's'
-    }
-  }
+      key: 's',
+    },
+  },
 }

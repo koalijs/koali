@@ -1,5 +1,5 @@
 module.exports = () => {
-  return function(ctx, next) {
+  return function (ctx, next) {
     return next()
   }
 }
